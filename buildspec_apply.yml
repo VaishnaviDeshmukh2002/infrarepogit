@@ -5,20 +5,20 @@ phases:
     runtime-versions:
       python: 3.x
     commands:
-      - echo Installing Terraform...
-      - wget https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip
-      - unzip terraform_0.14.7_linux_amd64.zip
+      - echo Installing Terraform
+      - wget https://releases.hashicorp.com/terraform/1.3.0/terraform_1.3.0_linux_amd64.zip
+      - unzip terraform_1.3.0_linux_amd64.zip
       - mv terraform /usr/local/bin/
+      - chmod +x /usr/local/bin/terraform
       - terraform --version
   pre_build:
     commands:
-      - echo Initializing Terraform...
+      - echo Pre-build started on `date`
       - terraform init
   build:
     commands:
-      - echo Applying Terraform changes...
-       - "terraform apply "tfapply"
+      - echo Build started on `date`
+      - terraform apply "tfapply"
 artifacts:
   files:
     - '**/*'
-  discard-paths: yes
